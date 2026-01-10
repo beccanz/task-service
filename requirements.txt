@@ -1,0 +1,25 @@
+fastapi>=0.95.0
+uvicorn[standard]>=0.20.0
+
+
+# DB
+sqlalchemy
+asyncpg       # PostgreSQL
+psycopg2-binary  # optional sync driver
+alembic
+
+# Background tasks
+celery
+redis
+
+# Metrics
+prometheus-client
+prometheus-fastapi-instrumentator
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+
+# Misc
+python-dotenv

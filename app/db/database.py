@@ -1,11 +1,14 @@
+import os
 from sqlalchemy.ext.asyncio import create_async_engine
 
-DATABASE_URL = "sqlite+aiosqlite:///./local.db"
-
-# for postgres connection
-# postgres+asyncpg://user:password@localhost:5432/dbname
+# Use PostgreSQL by default, fallback to SQLite for local testing without Docker
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+asyncpg://taskuser:taskpass@localhost:5432/taskdb"
+)
 
 engine = create_async_engine(
     DATABASE_URL,
-    echo=True, #logs sql (turn off in prod)
+    echo=True,  # logs SQL (turn off in prod)
+    pool_pre_ping=True,  # verify connections before using
 )
